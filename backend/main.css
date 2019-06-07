@@ -1,0 +1,79 @@
+table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td ,tr {
+    border-bottom: 1px solid rgb(124, 118, 118);
+    padding: 8px;
+    text-align: left;
+
+}
+th{
+    background: rgb(19, 204, 13);
+    color: white;
+}
+tr:hover{
+    background: rgb(184, 187, 187);
+}
+a:hover{
+    color: rgba(35, 12, 240, 0.822);
+}
+h1{
+    color: rgb(14, 39, 124);
+    text-align: center;
+}
+body{
+    font-size: 18px;
+}
+#img{
+    height: 100px;
+    width: 100px;
+}
+#button{
+    background: rgb(18, 151, 13);
+    color: white;
+    height: 25px;
+    width: 100px;
+    border:none;
+    border-radius: 5px;
+    
+}
+#form{
+    border: 1px solid rgb(131, 120, 120);
+    height: 500px;
+    width: 400px;
+    border-radius: 10px;
+    margin: auto;
+    padding: 30px;
+}
+a{
+    text-decoration: none;
+    color: rgb(56, 146, 146);
+}
+input[type="text"]{
+	background: url("../images/user.png") no-repeat 382px 11px;
+    background-size: 25px;
+    border-radius: 8px;
+    width: 200px;
+    margin-top: 5px;
+}
+#mainf{
+    margin: auto;
+}
+#login{
+    font-family: 'Montserrat', sans-serif;
+	margin:0;
+	background:url(img/banner.png) no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+	background-position: center;
+}
+#tim{
+    border-radius: 5px;
+}
