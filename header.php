@@ -8,7 +8,7 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Rokkitt:100,300,400,700" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -27,7 +27,7 @@
 	<!-- Owl Carousel -->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	
+
 	<!-- Date Picker -->
 	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 	<!-- Flaticons  -->
@@ -38,7 +38,7 @@
 
 	</head>
 	<body>
-		
+
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -66,12 +66,12 @@
 						<li><a href="about.php">Thông tin</a></li>
 						<li><a href="contact.php">Liên hệ</a></li>
 						<li class="has-dropdown">
-							<a href="men.php"> <?php echo $_SESSION['username'] ?></a>
+							<a href="men.php"> <?php echo $_SESSION['kh'] ?></a>
 							<ul class="dropdown">
 								<li><a href="detailUser.php">Thông tin cá nhân</a></li>
 								<li><a href="changePass">Đổi mật khẩu</a></li>
 								<li><a href="logout.php">Đăng xuất</a></li>
-								<li><a href="login.php">Đăng nhập</a></li>
+								<li><a href="backend/login.php">Đăng nhập</a></li>
 							</ul>
 						</li>
 						<li class="cart"><a href="cart.php"><i class="icon-shopping-cart"></i> Giỏ hàng [0]</a></li>

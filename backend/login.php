@@ -29,14 +29,28 @@ if (isset($_POST['login'])) {
 	$pass = $_POST['password'];
 	$sql = "SELECT * FROM users WHERE username = '$username' AND password = '$pass' ";
 	$query = mysqli_query($connect, $sql);
-	$row = mysqli_num_rows($query);
-	if ($row == 0) {
+	while ($result = mysqli_fetch_array($query)) {
+		$roles = $result['roles'];
+		// var_dump($roles);
+		$row = mysqli_num_rows($query);
+		if ($username == $result['username'] && $pass == $result['password'] && $roles == '1') {
+			$_SESSION['username'] = $username;
+			header('location:index1.php');
+		}
+		if ($row == 0) {
+			echo "sai ten dang nhap hoac mat khau";
+		} elseif ($username == $result['username'] && $pass == $result['password'] && $roles == '0') {
+			var_dump($roles);
+			$_SESSION['kh'] = $username;
+			header('location: http://localhost:88/doanthuattoan');
+		} elseif ($username == $result['username'] && $pass == $result['password'] && $roles == '2') {
+			$_SESSION['username'] = $username;
+			header('location:index1.php');
+		}
 
-	} else {
-		$_SESSION['username'] = $username;
-		header('location:index1.php');
 	}
 }
+
 ?>
 </body>
 </html>

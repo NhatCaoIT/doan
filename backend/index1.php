@@ -1,4 +1,4 @@
-
+<?php session_start()?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +41,7 @@
   <aside class="main-sidebar">
     <section class="sidebar">
       <ul class="sidebar-menu" data-widget="tree">
-            <li><a href="index.php"><i class="fa fa-circle-o"></i> Home</a></li>
+            <li><a href="listuser.php"><i class="fa fa-circle-o"></i> <?php echo $_SESSION['username'] ?> </a></li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>

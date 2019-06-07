@@ -1,4 +1,9 @@
-<?php include 'connect.php' ?>
+<?php
+include 'connect.php';
+session_start();
+var_dump($_SESSION['username']);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +16,13 @@
 </head>
 <body>
     <?php
-    $ID = $_GET['iddel'];
-    $sql = "DELETE  FROM product WHERE ID_product = $ID";
-    $query = mysqli_query($connect , $sql);
-    header('location:index1.php');
+if ($_SESSION['username'] == 'admin') {
+	$ID = $_GET['iddel'];
+	$sql = "DELETE  FROM product WHERE ID_product = $ID";
+	$query = mysqli_query($connect, $sql);
+	header('location:index1.php');
+}
 
-    ?>
+?>
 </body>
 </html>

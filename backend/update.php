@@ -1,9 +1,9 @@
 
-<?php 
+<?php
 include 'connect.php';
 session_start();
-if(!$_SESSION['username']){
-    header('location:login.php');
+if (!$_SESSION['username']) {
+	header('location:login.php');
 }
 
 ?>
@@ -29,20 +29,20 @@ if(!$_SESSION['username']){
             <th>Detail</th>
             <th colspan = '2'>Action</th>
         </tr>
-        <?php 
-        $id = $_GET['idUpdate'];
-        $sql = "SELECT * FROM product WHERE ID_product = $id";
-        $results = mysqli_query($connect , $sql);
-        while($row = mysqli_fetch_array($results)){
-            $imageshow = 'upLoad/'.$row['image'];
-            ?>
+        <?php
+$id = $_GET['idUpdate'];
+$sql = "SELECT * FROM product WHERE ID_product = $id";
+$results = mysqli_query($connect, $sql);
+while ($row = mysqli_fetch_array($results)) {
+	$imageshow = 'upLoad/' . $row['image'];
+	?>
             <tr>
-                <td><?php echo $row['ID_product']  ?></td>
-                <td><?php echo $row['name']  ?></td>
-                <td><?php echo $row['price']  ?></td>
-                <td><?php echo $row['quantity']  ?></td>
-                <td> <img id = 'img' src= "<?php echo $imageshow  ?>"> </td>
-                <td><?php echo $row['detail']  ?></td>
+                <td><?php echo $row['ID_product'] ?></td>
+                <td><?php echo $row['name'] ?></td>
+                <td><?php echo $row['price'] ?></td>
+                <td><?php echo $row['quantity'] ?></td>
+                <td> <img id = 'img' src= "<?php echo $imageshow ?>"> </td>
+                <td><?php echo $row['detail'] ?></td>
                 <td> <a href = 'delete.php?iddel=<?php echo $row['id'] ?>'>Delete </a>  </td>
             </tr>
             <div id = form>
@@ -58,29 +58,31 @@ if(!$_SESSION['username']){
                 </form>
             </div>
 
-            <?php 
-            if(isset($_POST['update'])){
-                $image = $row['image'];
-                $name = $_POST['name'];
-                $quantity = $_POST['quan'];
-                $price= $_POST['price'];
-                $date = $_POST['detail'];
-                $imageUpload = $_FILES['image'];
-                if(!$imageUpload['error']){
-                    $save = 'upLoad/';
-                    $imageNew = uniqid().'-'.$imageUpload['name'];
-                    move_uploaded_file($imageUpload['tmp_name'] , $save.$imageNew);
-                    $image = $imageNew;
-                    unlink($imageshow);
-                }
-                $sql = " UPDATE product SET name = '$name' , price = '$price' , 
+            <?php
+if ($_SESSION['username'] == 'admin') {
+		if (isset($_POST['update'])) {
+			$image = $row['image'];
+			$name = $_POST['name'];
+			$quantity = $_POST['quan'];
+			$price = $_POST['price'];
+			$date = $_POST['detail'];
+			$imageUpload = $_FILES['image'];
+			if (!$imageUpload['error']) {
+				$save = 'upLoad/';
+				$imageNew = uniqid() . '-' . $imageUpload['name'];
+				move_uploaded_file($imageUpload['tmp_name'], $save . $imageNew);
+				$image = $imageNew;
+				unlink($imageshow);
+			}
+			$sql = " UPDATE product SET name = '$name' , price = '$price' ,
                 image = '$image' , detail = '$date' , quantity = '$quantity' WHERE ID_product = '$id' ";
-                $query = mysqli_query($connect , $sql);
-                header('location:index1.php');
-                var_dump($image);
-            }
-        }
-        ?>
+			$query = mysqli_query($connect, $sql);
+			header('location:index1.php');
+			var_dump($image);
+		}
+	}
+}
+?>
     </table>
 </body>
 </html>

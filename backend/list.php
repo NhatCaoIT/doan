@@ -1,12 +1,11 @@
-    <?php 
-    session_start();
-    include 'connect.php';
-    if(!$_SESSION['username']){
-        header('location:login.php');
-    }
+    <?php
+session_start();
+include 'connect.php';
+if (!$_SESSION['username']) {
+	header('location:login.php');
+}
 
-
-    ?>
+?>
     <!DOCTYPE html>
     <html>
     <head>
@@ -34,12 +33,12 @@
                 <th colspan = '4'>Action</th>
             </tr>
 
-            <?php 
-            $sql = "SELECT * FROM product";
-            $results = mysqli_query($connect , $sql);
-            while ($row = mysqli_fetch_array($results)) {
-                $image = 'upLoad/'.$row['image'];
-                ?>
+            <?php
+$sql = "SELECT * FROM product";
+$results = mysqli_query($connect, $sql);
+while ($row = mysqli_fetch_array($results)) {
+	$image = 'upLoad/' . $row['image'];
+	?>
                 <tr>
                     <td> <?php echo $row['ID_product'] ?></td>
                     <td><?php echo $row['name'] ?></td>
@@ -52,20 +51,20 @@
                     <td> <a href = "export.php?id=<?php echo ($row['ID_product']) ?>"> Export </a> </td>
                     <td> <a href = "import.php?id=<?php echo ($row['ID_product']) ?>"> Import </a> </td>
                 </tr>
-            <?php } ?>
+            <?php }?>
 
         </table>
         <a href = 'add.php'> <input type = 'button' value = 'Add product' id = 'button'> </a>
 
-        <?php 
-        if(isset($_POST['search'])){
-            $id = $_POST['ID'];
-            $sql = " SELECT * FROM product WHERE ID_product = '$id' ";
-            $results = mysqli_query($connect , $sql);
-            while ($row = mysqli_fetch_array($results)){
-                $imageShow = 'upLoad/'.$row['image'];
-                
-                ?>
+        <?php
+if (isset($_POST['search'])) {
+	$id = $_POST['ID'];
+	$sql = " SELECT * FROM product WHERE ID_product = '$id' ";
+	$results = mysqli_query($connect, $sql);
+	while ($row = mysqli_fetch_array($results)) {
+		$imageShow = 'upLoad/' . $row['image'];
+
+		?>
                 <h1> Ket qua tim kiem </h1>
                 <table border = '1'>
                     <tr>
@@ -88,13 +87,13 @@
                         <td> <a href = "update.php?idUpdate=<?php echo ($row['ID_product']) ?>"> Update </a> </td>
                         <td> <a href = "export.php?id=<?php echo ($row['ID_product']) ?>"> Export </a> </td>
                         <td> <a href = "import.php?id=<?php echo ($row['ID_product']) ?>"> Import </a> </td>
-                        
+
                     </tr>
-                <?php } } ?>
-                
+                <?php }}?>
+
 
             </table>
-            
+
 
         </body>
         </html>

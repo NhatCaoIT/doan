@@ -36,26 +36,28 @@ if (!$_SESSION['username']) {
         </form>
     </div>
     <?php
-if (isset($_POST['add'])) {
-	$imageUpload = $_FILES['image'];
-	$name = $_POST['name'];
-	$price = $_POST['price'];
-	$detail = $_POST['detail'];
-	$save = 'upLoad/';
-	$quantity = (int) $_POST['quan'];
-	$image = uniqid() . '-' . $imageUpload['name'];
-	$id = $_POST['ID'];
-	move_uploaded_file($imageUpload['tmp_name'], $save . $image);
-	if ($quantity <= 0) {
-		echo 'Vui lòng nhập số lượng lớn hơn 1';
-	} else {
-		$sql = "INSERT INTO product( name , price, image ,quantity , detail, ID_group)
+if ($_SESSION['username'] == 'admin') {
+	if (isset($_POST['add'])) {
+		$imageUpload = $_FILES['image'];
+		$name = $_POST['name'];
+		$price = $_POST['price'];
+		$detail = $_POST['detail'];
+		$save = 'upLoad/';
+		$quantity = (int) $_POST['quan'];
+		$image = uniqid() . '-' . $imageUpload['name'];
+		$id = $_POST['ID'];
+		move_uploaded_file($imageUpload['tmp_name'], $save . $image);
+		if ($quantity <= 0) {
+			echo 'Vui lòng nhập số lượng lớn hơn 1';
+		} else {
+			$sql = "INSERT INTO product( name , price, image ,quantity , detail, ID_group)
                 VALUE('$name' , '$price'  ,'$image',$quantity , '$detail' , '$id' )";
-		$query = mysqli_query($connect, $sql);
-		// header('location:index1.php');
-		var_dump($id);
-	}
+			$query = mysqli_query($connect, $sql);
+			header('location:index1.php');
+			var_dump($id);
+		}
 
+	}
 }
 ?>
 </body>
